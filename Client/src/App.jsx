@@ -38,7 +38,7 @@ export const App = () => {
 
     return (
         <>
-
+                <h1>Notes App</h1>
 
             <form onSubmit={handleSubmit} className='form'>
                 <label htmlFor='title'>Title</label>
