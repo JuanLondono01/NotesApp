@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './styles/cards.css';
+import posts from '../../Server/data';
 
 export const App = () => {
     const [Posts, setPosts] = useState([]);
@@ -23,7 +24,7 @@ export const App = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                setPosts([...Posts, data]); // Agrega el nuevo post a la lista de posts
+                setPosts([data, ...posts]); // Agrega el nuevo post a la lista de posts
                 setFormData({ title: '', body: '' }); // Limpia el formulario después de enviar
             });
     };

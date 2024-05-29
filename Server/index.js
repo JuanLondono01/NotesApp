@@ -15,9 +15,9 @@ app.get('/api/post', (req, res) => {
 });
 
 app.post('/api/post', (req, res) => {
-    const newPost = { userId: 1, id: 101, ...req.body};
+    const newPost = { userId: 1, id: posts.length + 1, ...req.body};
 
-    posts.push(newPost)
+    posts.unshift(newPost)
 
     res.status(201).send(newPost)
 });
