@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import './styles/cards.css';
-import posts from '../../Server/data';
 
 export const App = () => {
     const [Posts, setPosts] = useState([]);
@@ -14,7 +13,13 @@ export const App = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+    
+        // Verificar si alguno de los campos está vacío
+        if (formData.title.trim() === '' || formData.body.trim() === '') {
+            alert('Please fill in all fields');
+            return; // Detener el proceso de envío del formulario
+        }
+    
         fetch('http://localhost:3000/api/post', {
             method: 'POST',
             headers: {
@@ -24,11 +29,14 @@ export const App = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                setPosts([data, ...posts]); // Agrega el nuevo post a la lista de posts
+                setPosts([data, ...Posts]); // Agrega el nuevo post a la lista de posts
                 setFormData({ title: '', body: '' }); // Limpia el formulario después de enviar
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                // Manejar errores de la solicitud aquí
             });
     };
-
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -39,7 +47,7 @@ export const App = () => {
 
     return (
         <>
-                <h1>Welcome to NotesApp</h1>
+            <h1>Welcome to NotesApp 2024</h1>
 
             <form onSubmit={handleSubmit} className='form'>
                 <label htmlFor='title'>Title</label>
@@ -51,7 +59,8 @@ export const App = () => {
                     onChange={handleChange}
                 />
                 <label htmlFor='body'>Body</label>
-                <textarea autoCapitalize='words'
+                <textarea
+                    autoCapitalize='words'
                     type='text'
                     placeholder='Enter the body'
                     name='body'
