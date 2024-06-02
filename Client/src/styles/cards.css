@@ -1,107 +1,113 @@
 * {
-    margin: 0%;
-    padding: 0%;
-    box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0%;
+	padding: 0%;
 }
-
 body {
-    font-family: cursive;
+	font-family: cursive;
 }
-
-.body{
-    font-size: .8rem;
+.body {
+	font-size: .8rem;
+    position: static;
 }
-
 .container {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(3, 1fr);
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
 }
-
 .card {
-    width: 400px;
-    height: 150px;
-    border: 1px solid black;
-    font-size: 1rem;
-    margin-inline: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: inset 0 0 10px gray;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border: 1px solid black;
+	border-radius: 10px;
+	box-shadow: inset 0 0 10px gray;
+	width: 400px;
+	height: 250px;
+	text-align: center;
+	font-size: 1rem;
+	margin-inline: auto;
+    justify-content: center;
 }
-
 .card:nth-child(1),
 .card:nth-child(2),
 .card:nth-child(3) {
-    margin-top: 2rem;
+	margin-top: 2rem;
 }
-
 .card:last-of-type {
-    margin-bottom: 2rem;
+	margin-bottom: 2rem;
 }
-
-
-
 .title {
-    font-weight: bold;
-    margin-bottom: 1rem;
+	margin-bottom: 1rem;
+	font-weight: bold;
 }
-
 .form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    margin-inline: auto;
-    border: 1px solid black;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid black;
+	border-radius: 10px;
+	width: 300px;
+	text-align: center;
+	margin-inline: auto;
 }
-
 .form > button {
-    width: 8rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    cursor: pointer;
-    height: 2rem;
-    border-radius: 5px;
-    border: 1px solid white;
-    background: linear-gradient( lightblue, lightgreen);
-    font-size: large;
-    color: white;
-
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	border: 1px solid white;
+	border-radius: 5px;
+	background: linear-gradient( lightblue, lightgreen);
+	cursor: pointer;
+	width: 8rem;
+	height: 2rem;
+	color: white;
+	font-size: large;
 }
-
-.form > button:hover{
-    transition: all 5s;
-    background: linear-gradient(lightgreen, lightblue);
-
+.form > button:hover {
+	transition: all 5s;
+	background: linear-gradient(lightgreen, lightblue);
 }
-
 textarea {
-    resize: none;
-    height: 70px;
-    text-indent: 2px;
-    width: 90%;
-    border-radius: 10px;
-    outline: none;
+	outline: none;
+	border-radius: 10px;
+	width: 90%;
+	height: 70px;
+	resize: none;
+	text-indent: 2px;
+}
+input {
+	outline: none;
+	border: 1px solid black;
+	border-radius: 5px;
+	width: 90%;
+}
+input:focus {
+	border: 1.5px solid green;
+}
+textarea:focus {
+	border: 1.5px solid green;
+}
+h1 {
+	margin-bottom: 2rem;
+	text-align: center;
+}
+.card-cont{
+    position: relative;
+    top: -3rem;
+    height: 6rem;
 }
 
-input{
-    width: 90%;
-    border-radius: 5px;
-    border: 1px solid black;
-    outline: none;
+.delete-icon {
+    position: relative;
+    left: 45%;
+    top: 4rem;
+    cursor: pointer;
 }
 
-input:focus{
-    border: 1.5px solid green;
-}
-
-
-textarea:focus{
-    border: 1.5px solid green;
+.edit-icon{
+    position: relative;
+    right: 42%;
+    top: 2rem;
+    cursor: pointer;
 }

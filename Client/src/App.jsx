@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { MdDelete } from 'react-icons/md';
+import { MdEdit } from 'react-icons/md';
 import './styles/cards.css';
 
 export const App = () => {
@@ -13,13 +15,13 @@ export const App = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
+
         // Verificar si alguno de los campos está vacío
         if (formData.title.trim() === '' || formData.body.trim() === '') {
             alert('Please fill in all fields');
             return; // Detener el proceso de envío del formulario
         }
-    
+
         fetch('http://localhost:3000/api/post', {
             method: 'POST',
             headers: {
@@ -36,18 +38,47 @@ export const App = () => {
                 console.error('Error:', error);
                 // Manejar errores de la solicitud aquí
             });
+
+        console.log(formData);
     };
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+            id: Posts.length + 1,
+        });
+    };
+
+    const handleDelete = (id) => {
+        fetch(`http://localhost:3000/api/post/${id}`, {
+            method: 'DELETE',
+        })
+            
+            .then((response) => {                    
+                    if (response.ok) {
+                        alert('The note has been deleted successfully.')
+                        
+                    } else {
+                        alert('Failed to delete the note.');
+                    }
+                
+            })
+            .catch((error) => {
+                console.error('Error deleting note:', error);
+                alert(
+                    'An error occurred while deleting the note. Please try again later.'
+                );
+            });
     };
 
     useEffect(() => {
         getPosts();
     }, []);
 
+
     return (
         <>
-            <h1>Welcome to NotesApp 2024</h1>
+            <h1>NotesApp 2024</h1>
 
             <form onSubmit={handleSubmit} className='form'>
                 <label htmlFor='title'>Title</label>
@@ -75,8 +106,25 @@ export const App = () => {
                 {Posts.map(({ body, id, title }) => {
                     return (
                         <div className='card' key={id}>
-                            <h4 className='title'>{title}</h4>
-                            <p className='body'>{body}</p>
+                            <section className='card-cont'>
+                                <h4 className='title'>{title}</h4>
+                                <p className='body'>{body}</p>
+                            </section>
+                            <i
+                                className='delete-icon'
+                                onClick={() => handleDelete(id)}
+                            >
+                                <MdDelete color='red' size={30} />
+                            </i>
+
+                            <i
+                                className='edit-icon'
+                                onClick={() =>
+                                    alert('The note is being edited')
+                                }
+                            >
+                                <MdEdit color='blue' size={25} />
+                            </i>
                         </div>
                     );
                 })}
